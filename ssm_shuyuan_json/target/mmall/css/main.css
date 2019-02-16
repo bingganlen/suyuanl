@@ -1,0 +1,75 @@
+body { font-family:Verdana; font-size:14px; margin:0;padding: 0;}
+ul{float: left;list-style: none;}
+a{text-decoration: none;text-align: center;}
+
+
+#container {margin:0 auto; width:100%;}
+#header { height:70px; margin-bottom:5px; position: relative;}
+.logo{height:70px; position: absolute; margin: 1px 0 0 30px;}
+.head{ position: absolute; left: 200px; top: 18px;}
+.headtext{ font-size: 37px; font-family: 华文新魏; }
+#headuser{position: absolute; top: 20px;left: 1600px;width: 250px;height: 50px; }
+
+ul#headuser li{float: left;height: 40px;margin-right: 1px;}
+#headuser li:first-child{ border: 1px solid black; }
+#headuser li:nth-child(2){ border-top: 1px solid black; border-bottom:1px solid black; }
+#headuser li:last-child{ border: 1px solid black; }
+.lixa{line-height: 40px;color: black;font-size:16px; }
+/* .lix1{}
+.lix2{} */
+#myselect{width: 100px;height: 40px;}
+
+
+#mainContent { height:500px; margin-bottom:5px;position: relative;}
+#sidebar { float:left; width:400px; height:500px;position: relative;}
+.common{float: left;list-style: none;}
+.a1{display: block;width: 100px;height:30px;text-align: center; line-height: 30px;}
+.a2{color: black;background: #ececec;}
+.a3{color: red;}
+
+.list{position: absolute;top: 10px;left: 170px;}
+.th1{width: 60px;height: 40px;}
+.th2{width: 160px;height: 40px;}
+.td{height:30px;}
+
+.td1{height:18px; width: 90px;}
+.tr{height: 30px;}
+
+#content {margin-left: 405px; height:500px;position: relative;}/* margin-left:205px !important; margin-left:202px;  */
+#my_video_1{left: 100px;top: 10px;}
+.contentright{ position: absolute;top: 10px;left: 1600px;}
+#table{border: solid 1px black;}
+.trover{background: red;}
+#table tr:hover{background: #06e8e0;}
+
+.main{position: absolute;top: 500px; left: 300px;}
+
+.list tr:hover{background: #06e8e0;}
+#footer { }
+
+/*
+  mainlabel
+
+ */
+.THlist{
+	width: 1440px;
+	height: 400px;
+	position: absolute;
+	left: 190px;
+	top: 30px;
+}
+#tablelist{
+	border-right:1px solid black;border-bottom:1px solid black; border-left: 1px solid black; 
+	} 
+.tdl{height: 40px;}
+.l{height: 10px;border: 1px solid black;}	 
+.l1{width: 80px;}
+.l2{width: 260px;}
+.l3{width: 120px;}
+.l4{width: 260px;}
+.l5{width: 200px;}
+.l6{width: 126px;}
+.l7{width: 120px;}
+.l8{width: 200px;}
+#tablelist td{border-left:1px solid #cac9c9;border-top:1px solid #cac9c9;} 
+#tablelist td:hover{border: 2px solid #4ab7cb;}
