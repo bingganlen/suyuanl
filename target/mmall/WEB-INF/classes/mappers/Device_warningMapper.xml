@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.megain.junhao.dao.Device_warningMapper">
+  <resultMap id="BaseResultMap" type="com.megain.junhao.pojo.Device_warning">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dev_id" jdbcType="BIGINT" property="devId" />
+    <result column="light_max_warning" jdbcType="INTEGER" property="lightMaxWarning" />
+    <result column="light_min_warning" jdbcType="INTEGER" property="lightMinWarning" />
+    <result column="rain_max_warning" jdbcType="INTEGER" property="rainMaxWarning" />
+    <result column="rain_min_warning" jdbcType="INTEGER" property="rainMinWarning" />
+    <result column="air_temp_max_warning" jdbcType="INTEGER" property="airTempMaxWarning" />
+    <result column="air_temp_min_warning" jdbcType="INTEGER" property="airTempMinWarning" />
+    <result column="air_humi_max_warning" jdbcType="INTEGER" property="airHumiMaxWarning" />
+    <result column="air_humi_min_warning" jdbcType="INTEGER" property="airHumiMinWarning" />
+    <result column="soil_temp_max_warning" jdbcType="INTEGER" property="soilTempMaxWarning" />
+    <result column="soil_temp_min_warning" jdbcType="INTEGER" property="soilTempMinWarning" />
+    <result column="soil_humi_max_warning" jdbcType="INTEGER" property="soilHumiMaxWarning" />
+    <result column="soil_humi_min_warning" jdbcType="INTEGER" property="soilHumiMinWarning" />
+    <result column="soil_electric_max_warning" jdbcType="INTEGER" property="soilElectricMaxWarning" />
+    <result column="soil_electric_min_warning" jdbcType="INTEGER" property="soilElectricMinWarning" />
+    <result column="soil_salt_max_warning" jdbcType="INTEGER" property="soilSaltMaxWarning" />
+    <result column="soil_salt_min_warning" jdbcType="INTEGER" property="soilSaltMinWarning" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dev_id, light_max_warning, light_min_warning, rain_max_warning, rain_min_warning, 
+    air_temp_max_warning, air_temp_min_warning, air_humi_max_warning, air_humi_min_warning, 
+    soil_temp_max_warning, soil_temp_min_warning, soil_humi_max_warning, soil_humi_min_warning, 
+    soil_electric_max_warning, soil_electric_min_warning, soil_salt_max_warning, soil_salt_min_warning
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from device_warning
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from device_warning
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.megain.junhao.pojo.Device_warning">
+    insert into device_warning (id, dev_id, light_max_warning, 
+      light_min_warning, rain_max_warning, rain_min_warning, 
+      air_temp_max_warning, air_temp_min_warning, air_humi_max_warning, 
+      air_humi_min_warning, soil_temp_max_warning, 
+      soil_temp_min_warning, soil_humi_max_warning, 
+      soil_humi_min_warning, soil_electric_max_warning, 
+      soil_electric_min_warning, soil_salt_max_warning, 
+      soil_salt_min_warning)
+    values (#{id,jdbcType=INTEGER}, #{devId,jdbcType=BIGINT}, #{lightMaxWarning,jdbcType=INTEGER}, 
+      #{lightMinWarning,jdbcType=INTEGER}, #{rainMaxWarning,jdbcType=INTEGER}, #{rainMinWarning,jdbcType=INTEGER}, 
+      #{airTempMaxWarning,jdbcType=INTEGER}, #{airTempMinWarning,jdbcType=INTEGER}, #{airHumiMaxWarning,jdbcType=INTEGER}, 
+      #{airHumiMinWarning,jdbcType=INTEGER}, #{soilTempMaxWarning,jdbcType=INTEGER}, 
+      #{soilTempMinWarning,jdbcType=INTEGER}, #{soilHumiMaxWarning,jdbcType=INTEGER}, 
+      #{soilHumiMinWarning,jdbcType=INTEGER}, #{soilElectricMaxWarning,jdbcType=INTEGER}, 
+      #{soilElectricMinWarning,jdbcType=INTEGER}, #{soilSaltMaxWarning,jdbcType=INTEGER}, 
+      #{soilSaltMinWarning,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.megain.junhao.pojo.Device_warning">
+    insert into device_warning
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="devId != null">
+        dev_id,
+      </if>
+      <if test="lightMaxWarning != null">
+        light_max_warning,
+      </if>
+      <if test="lightMinWarning != null">
+        light_min_warning,
+      </if>
+      <if test="rainMaxWarning != null">
+        rain_max_warning,
+      </if>
+      <if test="rainMinWarning != null">
+        rain_min_warning,
+      </if>
+      <if test="airTempMaxWarning != null">
+        air_temp_max_warning,
+      </if>
+      <if test="airTempMinWarning != null">
+        air_temp_min_warning,
+      </if>
+      <if test="airHumiMaxWarning != null">
+        air_humi_max_warning,
+      </if>
+      <if test="airHumiMinWarning != null">
+        air_humi_min_warning,
+      </if>
+      <if test="soilTempMaxWarning != null">
+        soil_temp_max_warning,
+      </if>
+      <if test="soilTempMinWarning != null">
+        soil_temp_min_warning,
+      </if>
+      <if test="soilHumiMaxWarning != null">
+        soil_humi_max_warning,
+      </if>
+      <if test="soilHumiMinWarning != null">
+        soil_humi_min_warning,
+      </if>
+      <if test="soilElectricMaxWarning != null">
+        soil_electric_max_warning,
+      </if>
+      <if test="soilElectricMinWarning != null">
+        soil_electric_min_warning,
+      </if>
+      <if test="soilSaltMaxWarning != null">
+        soil_salt_max_warning,
+      </if>
+      <if test="soilSaltMinWarning != null">
+        soil_salt_min_warning,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="devId != null">
+        #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="lightMaxWarning != null">
+        #{lightMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="lightMinWarning != null">
+        #{lightMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="rainMaxWarning != null">
+        #{rainMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="rainMinWarning != null">
+        #{rainMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airTempMaxWarning != null">
+        #{airTempMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airTempMinWarning != null">
+        #{airTempMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airHumiMaxWarning != null">
+        #{airHumiMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airHumiMinWarning != null">
+        #{airHumiMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilTempMaxWarning != null">
+        #{soilTempMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilTempMinWarning != null">
+        #{soilTempMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilHumiMaxWarning != null">
+        #{soilHumiMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilHumiMinWarning != null">
+        #{soilHumiMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilElectricMaxWarning != null">
+        #{soilElectricMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilElectricMinWarning != null">
+        #{soilElectricMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilSaltMaxWarning != null">
+        #{soilSaltMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilSaltMinWarning != null">
+        #{soilSaltMinWarning,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.megain.junhao.pojo.Device_warning">
+    update device_warning
+    <set>
+      <if test="devId != null">
+        dev_id = #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="lightMaxWarning != null">
+        light_max_warning = #{lightMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="lightMinWarning != null">
+        light_min_warning = #{lightMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="rainMaxWarning != null">
+        rain_max_warning = #{rainMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="rainMinWarning != null">
+        rain_min_warning = #{rainMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airTempMaxWarning != null">
+        air_temp_max_warning = #{airTempMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airTempMinWarning != null">
+        air_temp_min_warning = #{airTempMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airHumiMaxWarning != null">
+        air_humi_max_warning = #{airHumiMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="airHumiMinWarning != null">
+        air_humi_min_warning = #{airHumiMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilTempMaxWarning != null">
+        soil_temp_max_warning = #{soilTempMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilTempMinWarning != null">
+        soil_temp_min_warning = #{soilTempMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilHumiMaxWarning != null">
+        soil_humi_max_warning = #{soilHumiMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilHumiMinWarning != null">
+        soil_humi_min_warning = #{soilHumiMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilElectricMaxWarning != null">
+        soil_electric_max_warning = #{soilElectricMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilElectricMinWarning != null">
+        soil_electric_min_warning = #{soilElectricMinWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilSaltMaxWarning != null">
+        soil_salt_max_warning = #{soilSaltMaxWarning,jdbcType=INTEGER},
+      </if>
+      <if test="soilSaltMinWarning != null">
+        soil_salt_min_warning = #{soilSaltMinWarning,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.megain.junhao.pojo.Device_warning">
+    update device_warning
+    set dev_id = #{devId,jdbcType=BIGINT},
+      light_max_warning = #{lightMaxWarning,jdbcType=INTEGER},
+      light_min_warning = #{lightMinWarning,jdbcType=INTEGER},
+      rain_max_warning = #{rainMaxWarning,jdbcType=INTEGER},
+      rain_min_warning = #{rainMinWarning,jdbcType=INTEGER},
+      air_temp_max_warning = #{airTempMaxWarning,jdbcType=INTEGER},
+      air_temp_min_warning = #{airTempMinWarning,jdbcType=INTEGER},
+      air_humi_max_warning = #{airHumiMaxWarning,jdbcType=INTEGER},
+      air_humi_min_warning = #{airHumiMinWarning,jdbcType=INTEGER},
+      soil_temp_max_warning = #{soilTempMaxWarning,jdbcType=INTEGER},
+      soil_temp_min_warning = #{soilTempMinWarning,jdbcType=INTEGER},
+      soil_humi_max_warning = #{soilHumiMaxWarning,jdbcType=INTEGER},
+      soil_humi_min_warning = #{soilHumiMinWarning,jdbcType=INTEGER},
+      soil_electric_max_warning = #{soilElectricMaxWarning,jdbcType=INTEGER},
+      soil_electric_min_warning = #{soilElectricMinWarning,jdbcType=INTEGER},
+      soil_salt_max_warning = #{soilSaltMaxWarning,jdbcType=INTEGER},
+      soil_salt_min_warning = #{soilSaltMinWarning,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
