@@ -1,4 +1,5 @@
-body { font-family:Verdana; font-size:14px; margin:0;padding: 0;}
+html{height: 100%;}
+body { font-family:Verdana;min-height:100%;position: relative; font-size:14px; margin:0;padding: 0;}
 ul{float: left;list-style: none;}
 a{text-decoration: none;text-align: center;}
 
@@ -37,15 +38,15 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 
 #content {margin-left: 405px; height:500px;position: relative;}/* margin-left:205px !important; margin-left:202px;  */
 #my_video_1{left: 100px;top: 10px;}
-.contentright{ position: absolute;top: 10px;left: 1600px;}
+.contentright{ position: absolute;top: 30px;left: 1600px;}
 #table{border: solid 1px black;}
 .trover{background: red;}
 #table tr:hover{background: #06e8e0;}
 
-.main{position: absolute;top: 500px; left: 300px;}
+.main{position: absolute;top: 618px; left: 320px;}
 
 .list tr:hover{background: #06e8e0;}
-#footer { }
+.footer { position:absolute;bottom:0;   width:100%;height:50px;background-color: #a6e5f1;}
 
 /*
   mainlabel

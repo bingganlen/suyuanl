@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,7 @@
             margin-top: 20px;
             padding-bottom: 10px;
         }
+       .footer .w{ margin-top: 5px; }
         .footer .links{
             text-align: center;
             color: #666;

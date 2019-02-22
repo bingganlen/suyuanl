@@ -207,6 +207,8 @@
        $("#tablelist tr:odd").css("background-color","#ececec");
 </script>
 </div>
+</div>
+<%@include file="/jsp/include/footer.jsp"%>
 </body>
 
 </html>

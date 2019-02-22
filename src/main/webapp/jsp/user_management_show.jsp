@@ -109,7 +109,8 @@
             </div>
         </div>
 
- </div>       
+ </div>
+      <%@include file="/jsp/include/footer.jsp"%>
     </body>
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
     <script type="text/javascript">
@@ -131,4 +132,5 @@
 
     </script>
     </c:forEach>
+
 </html>

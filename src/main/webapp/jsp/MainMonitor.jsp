@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
 </head>
 
-<body>
+<body onload="findid()">
 <div id="container">
 	<!-- This is the Header -->
   <div id="header">
@@ -18,99 +18,72 @@
     <div class="head"><span class="headtext">智能物联网管理系统</span></div>
     <ul id="headuser">
     	<li><img src="../images/0.jpg" width="40" height="40"></li>
-        <li class="lix"><a href="#" class="lixa">用户信息</a></li>
+        <li class="lix"><a href="/user/get_information.do" class="lixa">用户信息</a></li>
         <li><img src="../images/sort_desc.png"></li>
     </ul>
   </div>
   <div id="mainContent">
     <div id="sidebar">
     	<ul class="common">
-           <li><a href="#" class="a1 a3">温湿度标签</a></li>
+           <li><a href="#" class="a1 a2">温湿度标签</a></li>
            <li><a href="#" class="a1 a2">溯源系统</a></li>
-           <li><a href="#" class="a1 a2">实时温湿度监控</a></li>
+           <li><a href="#" class="a1 a3">实时温湿度监控</a></li>
     	</ul>
-       
-    </div>
-   
-  <div class="THlist">
-          <table border="0" cellspacing="1px" width="1440px"  cellpadding="0px" align="center" bgcolor="white" id="tablelist">
-		    
+       <div class="list">
+          <table border="0px" cellspacing="1px" width="220px"  cellpadding="0px" align="center" bgcolor="black">
+		    <caption align="top">在线设备列表</caption>
 		       <tr  bgcolor="white">
-		        <th class="l l1">编号</th>
-		        <th class="l l2">标签ID
-                    <select style="float: right; width: 70px;">
-                        <option value="1">ID1</option>
-                    </select>
-		        </th>
-		        <th class="l l3">标签类型</th>
-		        <th class="l l4">标签最新运单编号
-                    <select style="float: right; width: 70px;">
-                        <option value="1">运单号</option>
-                    </select>
-		        </th>
-                <th class="l l5">数据最新上传日期</th>
-                <th class="l l6">本批次最新上传报警</th>
-                <th class="l l7">标签固件版本</th>
-                <th class="l l8">操作</th>
+		        <th class="th1">序号</th>
+		        <th class="th2">设备ID</th>
 		      </tr>
-		      <tr  align="center">		       
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>   
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td> 
-		        <td class="tdl"></td>
-		        <td class="tdl"><a href="#">查看详情</a></td>    
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
 		      </tr>
-		      <tr  align="center">		       
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>   
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td> 
-		        <td class="tdl"></td>
-		        <td class="tdl"><a href="#">查看详情</a></td>    
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
 		      </tr>
-		      <tr  align="center">		       
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>   
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td> 
-		        <td class="tdl"></td>
-		        <td class="tdl"><a href="#">查看详情</a></td>    
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
 		      </tr>
-		      <tr  align="center">		       
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>   
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td> 
-		        <td class="tdl"></td>
-		        <td class="tdl"><a href="#">查看详情</a></td>    
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
 		      </tr>
-		      <tr  align="center">		       
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>   
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td>
-		        <td class="tdl"></td> 
-		        <td class="tdl"></td>
-		        <td class="tdl"><a href="#">查看详情</a></td>    
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
 		      </tr>
-
-		      
-		      
-
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
+		      </tr>
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
+		      </tr>
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
+		      </tr>
+		      <tr  align="center" bgcolor="white">		       
+		        <td class="td"></td>
+		        <td class="td"></td>     
+		      </tr>
 
 
 		    </table>
        </div>
+    </div>
+    <div id="content">
+       <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450" data-setup='{}'>
+           <source src="http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" type="application/x-mpegURL"><!-- http://1p5e803947.imwork.net:18634/hls/hls.m3u8 -->
+       </video>
+       
+    </div>
+
 
   <div class="main" id="main" style="height: 300px;width: 1200px;">
      
@@ -202,11 +175,35 @@
             }
         );
 </script>
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript">
-       $("#tablelist tr:odd").css("background-color","#ececec");
-</script>
-</div>
+	  <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+	  <script type="text/javascript">
+          function findid() {
+              $.ajax({
+                  type:"POST",
+                  url: "/device/findId.do",
+                  dataType: "json",
+                  success:function(data){
+                      addfindid(data);
+                  }
+
+              });
+
+              function addfindid(data) {
+                  //var data  = eval( '('+ data + ')' );
+                  //alert(data.deviceId);
+                  $.each(data,function(index,obj){
+                      $("#tablel").append("<tr  align='center' bgcolor='white'>"
+                          +"<td class='td'>" + (index + 1) + "</td>"
+                          +"<td class='td'>" + obj['deviceId'] + "</td>"
+                          +"</tr>");
+                  });
+
+              }
+          }
+	  </script>
+
+  </div></div>
+<%@include file="/jsp/include/footer.jsp"%>
 </body>
 
 </html>

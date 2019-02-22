@@ -61,22 +61,12 @@ public class Device_RecordServiceImpl implements Device_RecordService {
     @Override
     //public Map<Object, Object> echartWeekByRecord_his(Integer devId) {
     public  List<Map<String, Object>> echartWeekByRecord_his(Integer devId) {
-        //devId = deviceUserMapper.selectDeviceIDByUserId()
-        //return device_record_hisMapper.selectByDeviceWeek(devId);
-        List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
-        Map<String, Object> map = new HashMap<String, Object>();
-        listMap = device_record_hisMapper.selectByDeviceWeek(devId);
-        /*for(int i=0;i<listMap.size();i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("a", i);
-            map.put("b", i);
-            listMap .add(map);
-        }*/
-        for(Object obj : listMap){
-            map.put("name", obj.getName());
-            map.put("data", obj.getData());
-            mapList.add(map);
-        }
+        List<Map<String, Object>> listMap  = device_record_hisMapper.selectByDeviceWeek(devId);
+        //内存溢出    java.lang.OutOfMemoryError: GC overhead limit exceeded
+
+
+           // listMap .add(resultMap);
+
         return listMap;
     }
 

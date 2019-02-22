@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,18 +29,36 @@ public class Device_record_hisController {
     private DerviceService derviceService;
 
     //echart 图表 main.jsp  一星期
-    @RequestMapping(value = "echartWeek.do",method = RequestMethod.GET)
+    @RequestMapping(value = "echartWeek.do", method = RequestMethod.GET)
     @ResponseBody
-    public Device_record_his echarts(Integer devId,ModelMap map){//HttpSession session
-        //int userId = (int) session.getAttribute("userid");
-        //devId = derviceService.getDeviceId(userId);
-        //获取点击的那个devId   不是这里定死了永远那个devId
-        List<Map<String, Object>> device_record_his = recordService.echartWeekByRecord_his(devId);
-        map.put("weeklist",list);
-        return list;
+    public List<Map<String, Object>> echarts(Integer devId, ModelMap map) {//HttpSession session
+        List<Map<String, Object >> resultMap = recordService.echartWeekByRecord_his(devId);
+        int size = resultMap.size();
+        List lights = new ArrayList<>();
+        Map<String,Object> listMap = new HashMap<String,Object>();
+        for (int i = 0; i < size; i++) {//7
+            Map mapItem = resultMap.get(i);
+            System.out.println(mapItem);
+            lights.add(mapItem.get("light"));
+
+        }
+        for (int i = 0; i < 7; i++) {
+            System.out.println(lights.get(i));   //有输出   正确
+        }
+        map.put("lights",lights);
+        map.put("weeklist", resultMap);
+
+       /* Gson gson = new Gson();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Map<String,Object>> newMap=objectMapper.readValue(gson.toJson(listData), List.class);
+        System.out.println(newMap);*/
+        //return resultMap;
+        return resultMap;
     }
 
+   /* @Test
+    public void test(){
 
-
+    }*/
 
 }

@@ -37,18 +37,19 @@
     select
     <include refid="Base_Column_List" />
     from device_record_his
-    where dev_id = #{devId}.
+    where dev_id = #{devId}
     ORDER BY ABS(NOW() - create_time) ASC
     limit 1
   </select>
 
 <!--查询最近一个星期的记录 where week(create_time) = week(now)     DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(create_time);-->
-  <select id="selectByDeviceWeek" resultMap="java.util.Map" parameterType="java.lang.Integer">
+  <select id="selectByDeviceWeek" resultType="java.util.Map" parameterType="java.lang.Integer">
     select
-    *
+    <include refid="Base_Column_List" />
     from device_record_his
     where dev_id = #{devId}
-    and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(create_time);
+    and DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(create_time)
+    order by create_time ASC
   </select>
 
 

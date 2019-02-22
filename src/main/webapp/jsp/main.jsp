@@ -3,7 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -62,13 +62,21 @@
 
        </div>
   </div>
+    <c:forEach items="${weeklist}" var="item">
+        <c:forEach var="map" items="${item}">
+            <c:out value="${map.key}"></c:out>
+            <c:out value="${map.value}"></c:out>
+        </c:forEach>
 
+    </c:forEach>
   <div class="main" id="main" style="height: 300px;width: 1200px;">
      
   </div>
   <!-- tubiao chajian  -->
 <script type="text/javascript" src="../js/echarts.min.js"></script>
 <script type="text/javascript" src="../js/echarts.js"></script>
+
+
 <script type="text/javascript">
     require.config({
             paths: {
@@ -110,7 +118,8 @@
 			    xAxis : [
 			        {
 			            type : 'category',
-			            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+			            //data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                        data : ['星期一','星期二','星期三','星期四','星期五','星期六','星期天']
 			        }
 			    ],
 			    yAxis : [
@@ -135,23 +144,36 @@
 			            name:'光照强度',
 			            type:'bar',
 			            //data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-                        data :(function(){
-                            var arr=[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3];
-                            //EchartMainLight(firstList);
-                            return arr;
-                        })()
+                        data :[
+                              <%--<c:forEach items="${weeklist}" var="item">
+                                 <c:forEach var="map" items="${item}">
+                                    <c:out value="${map.key}"></c:out>
+                                    <c:out value="${map.value}"></c:out>
+                                 </c:forEach>
+                              </c:forEach>--%>
+                            <c:forEach items="${lights}" var="light"><c:out value="${light}"></c:out></c:forEach>
+                            /*(function(){
+                                //var arr=[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3];
+                                //EchartMainLight(firstList);
+                                return arr;
+                            })()*/
+
+
+                        ]<%--<c:forEach items="item" var="${lights}">${item}</c:forEach>    ${lights}--%>
+
 
 			        },
 			        {
 			            name:'降水量',
 			            type:'bar',
-			            data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+			            /*data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]*/
+                        data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6]
 			        },
 			        {
 			            name:'平均温度',
 			            type:'line',
 			            yAxisIndex: 1,
-			            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+			            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3]//, 23.4, 23.0, 16.5, 12.0, 6.2
 			        }
 			    ]
                 }
@@ -159,9 +181,11 @@
             }
         );
 </script>
+
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
     var firstList;
+    var light,rain,air_temp,air_humi,soil_temp,soil_humi,soil_electric,soil_salt = new Array();
     $(document).ready(function() {
         $.ajax({
             type:"POST",
@@ -261,26 +285,33 @@
         });
 
         function EchartMainLight(devId) {
-            var arr=[];
+            //var arr=[];
             $.ajax({
                 type : "GET",
                 /*async : false, //同步执行*/
                 url : "/echart/echartWeek.do?devId=" +devId,
                 dataType : "json", //返回数据形式为json
                 success : function(result) {
-                    if (result) {
+                    /*if (result) {
                         for(var i=0;i<result.length;i++){
                             console.log(result[i].light);
                             arr.push(result[i].light);
                         }
-                    }
+                    }*/
+
+                    //alert(result);   //[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+                    //var dataObj=eval("("+result+")");
+                    $.each(result,function (index,result) {
+                        var data = result[index];
+                        alert(eval()data); //undefined
+                    })
 
                 },
                 error : function(errorMsg) {
                     alert("不好意思，图表请求数据失败啦!");
                 }
             })
-            return arr;
+            //return arr;
         }
 
 
@@ -289,6 +320,7 @@
 
 </script>
 </div>
+<%@include file="/jsp/include/footer.jsp"%>
 </body>
 
 </html>
