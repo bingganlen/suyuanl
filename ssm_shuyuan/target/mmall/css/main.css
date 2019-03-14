@@ -1,8 +1,10 @@
-body { font-family:Verdana; font-size:14px; margin:0;padding: 0;}
+html{height: 100%;}
+body { font-family:Verdana;min-height:100%; position: relative; font-size:14px; margin:0;padding: 0;}
 ul{float: left;list-style: none;}
 a{text-decoration: none;text-align: center;}
+/*overflow : hidden;   浏览器body超出部分隐藏  会使浏览器品目这麽大的时候只能看那么多  没有滚动条*/
 
-
+/* 头部 */
 #container {margin:0 auto; width:100%;}
 #header { height:70px; margin-bottom:5px; position: relative;}
 .logo{height:70px; position: absolute; margin: 1px 0 0 30px;}
@@ -20,6 +22,7 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 #myselect{width: 100px;height: 40px;}
 
 
+/* 主体部分 */
 #mainContent { height:500px; margin-bottom:5px;position: relative;}
 #sidebar { float:left; width:400px; height:500px;position: relative;}
 .common{float: left;list-style: none;}
@@ -32,23 +35,41 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 .th2{width: 160px;height: 40px;}
 .td{height:30px;}
 
-.td1{height:18px; width: 90px;}
-.tr{height: 30px;}
+.td1{ width: 100px;}
+.td2{ width: 30px;}
+.td3{width: 50px;color: #2e8ded;}
+.tr{height: 40px;}
 
-#content {margin-left: 405px; height:500px;position: relative;}/* margin-left:205px !important; margin-left:202px;  */
+#content {margin-left: 430px; margin-top: 30px; height:500px;position: relative;}/* margin-left:205px !important; margin-left:202px;  */
+#playercontainer{ width: 800px;height: 450px;}
+
 #my_video_1{left: 100px;top: 10px;}
-.contentright{ position: absolute;top: 10px;left: 1600px;}
-#table{border: solid 1px black;}
+/* 右边栏 */
+.contentright{min─width:180px; height:300px ; position: absolute;top: 30px;left: 1500px; }
+#table{width: 190px; border: solid 1px rgba(0,0,0,0.2);}
 .trover{background: red;}
 #table tr:hover{background: #06e8e0;}
 
-.main{position: absolute;top: 500px; left: 300px;}
+.main{height: 330px;width: 1400px; position: absolute;top: 600px; left: 190px; }
+.EchartBtn{
+	width: 80px;height: 30px;
+	cursor: pointer;
+	background: white;
+	border-radius: 5px;
+	border: 1px solid #00a0f0;
+}
+.dowebok{
+	margin-left: 50px;
+	margin-top: 60px;
+}
 
 .list tr:hover{background: #06e8e0;}
-#footer { }
-
+.tdcolor{ color: #242A2F;height:30px;}
+ input.labelauty + label{font:12px "Microsoft Yahei";}
+.footer { position: fixed; bottom:0;   width:100%;height:50px;background-color: #a6e5f1;}
+/*position:fixed;*/
 /*
-  mainlabel
+  mainlabel  list
 
  */
 .THlist{
@@ -57,6 +78,37 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 	position: absolute;
 	left: 190px;
 	top: 30px;
+}
+.THlist input {
+	display: none
+}
+.THlist label {
+	width: 52px;
+	background: #CCC;
+	height: 28px;
+	border-radius: 14px;
+	float: right;
+	margin: 8px 10px 0 0;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+.THlist label em {
+	width: 26px;
+	height: 26px;
+	float: left;
+	margin: 1px;
+	border-radius: 13px;
+	box-shadow: 2px 3px 8px rgba(0,0,0,.1);
+	background: #FFF;
+	transition: 0.1s;
+}
+.THlist input:checked + label {
+	background: #a4d714;
+}
+.THlist input:checked + label em {
+	margin: 1px 1px 1px 25px;
+}
+.THlist input:disabled + label {
+	opacity: 0.5
 }
 #tablelist{
 	border-right:1px solid black;border-bottom:1px solid black; border-left: 1px solid black; 
@@ -73,3 +125,4 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 .l8{width: 200px;}
 #tablelist td{border-left:1px solid #cac9c9;border-top:1px solid #cac9c9;} 
 #tablelist td:hover{border: 2px solid #4ab7cb;}
+

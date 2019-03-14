@@ -4,6 +4,8 @@ package com.megain.junhao.service;
 import com.megain.junhao.common.ServerResponse;
 import com.megain.junhao.pojo.User;
 
+import java.util.List;
+
 public interface IUserService {
 
     ServerResponse<User> login(String username, String password);
@@ -14,6 +16,10 @@ public interface IUserService {
 
     ServerResponse selectQuestion(String username);
 
+    int selectUserId(String username);
+
+    List<User> selectUser(String username);
+
     ServerResponse<String> checkAnswer(String username, String question, String answer);
 
     ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken);
@@ -22,7 +28,7 @@ public interface IUserService {
 
     ServerResponse<User> updateInformation(User user);
 
-    ServerResponse<User> getInformation(Integer userId);
+    List<User> getInformation(Integer userId);
 
     ServerResponse checkAdminRole(User user);
 }

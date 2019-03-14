@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="ssm_shuyuan:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="mmall.war">
-      <element id="artifact" artifact-name="ssm_shuyuan:war exploded" />
-    </root>
-  </artifact>
-</component>

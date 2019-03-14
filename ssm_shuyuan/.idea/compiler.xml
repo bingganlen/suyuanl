@@ -9,8 +9,11 @@
         <module name="ssm_shuyuan" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ssm_shuyuan" target="1.7" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ssm_shuyuan" options="-extdirs C:\suyuan\ssm_shuyuan/src/main/webapp/WEB-INF/lib" />
+    </option>
   </component>
 </project>

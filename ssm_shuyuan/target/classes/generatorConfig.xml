@@ -13,7 +13,7 @@
         </commentGenerator>
         <!--配置数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/shuyuan?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/shuyuan?useAffectedRows=true&amp;useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -48,6 +48,51 @@
             <property name="useActualColumnNames" value="false"/>
         </table>-->
         <!--<table tableName="user" domainObjectName="User"></table>-->
-        <table tableName="user" domainObjectName="User"></table>
+
+                    <!--<table tableName="dept" domainObjectName="Dept"
+                       enableCountByExample="false" enableUpdateByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false"
+                       selectByExampleQueryId="false">  tableName数据库表名   domainObjectName生成实体类名
+                </table>-->
+
+    <table tableName="device_record_his_avg" domainObjectName="Device_record_his_avg" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+<!--
+    <table tableName="dept" domainObjectName="Dept" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="dervice_status_his" domainObjectName="Dervice_status_his" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="device" domainObjectName="Device" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="device_config_his" domainObjectName="Device_config_his" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="device_warning" domainObjectName="Device_warning" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="device_user" domainObjectName="Device_user" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="mounting" domainObjectName="Mounting" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+
+
+    <table tableName="permission" domainObjectName="Permission" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_role" domainObjectName="User_role" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_watch_device" domainObjectName="user_watch_device" enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+-->
+
+
     </context>
 </generatorConfiguration>

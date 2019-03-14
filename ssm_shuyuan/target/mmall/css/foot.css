@@ -1,7 +1,18 @@
+
+body{ height: 100%;
+    margin:0;
+    padding:0;}
 .footer{
+    width:100%;
+    width:2000px;
     margin-top: 20px;
+    /*position:fixed;*/
+    position: absolute;
     padding-bottom: 10px;
+    /*clear:both;*/
+    /*            overflow: auto;*/
 }
+.footer .w{ margin-top: 5px; }
 .footer .links{
     text-align: center;
     color: #666;

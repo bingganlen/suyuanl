@@ -20,6 +20,11 @@ body{ margin: 0;padding: 0; }
 #tablelist td{border-left:1px solid #cac9c9;border-top:1px solid #cac9c9;} 
 #tablelist td:hover{border: 2px solid #4ab7cb;}
 
+#tablelist input[type=text]{
+    width: 20px;
+    height: 20px;
+}
+
 
 
 #header { height:70px; margin-bottom:5px; position: relative;}
@@ -36,6 +41,16 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
 /* .lix1{}
 .lix2{} */
 #myselect{width: 100px;height: 40px;}
+.btn{
+    text-align: center;
+    line-height: 50px;
+    width: 200px;
+    height: 50px;
+    border:1px solid #C9C9C9;background-color:#07c1d2;color:#000;
+    cursor:pointer;
+}
+.btn:hover{border-color:#009688;color:#333}
+.footer{width: 100%;}
 
 
 
@@ -60,7 +75,7 @@ ul#headuser li{float: left;height: 40px;margin-right: 1px;}
  
  
  
-    input[type=range] {   
+    input[type=range] {
        -webkit-appearance:none;
 	   -moz-appearance:none;
 	   appearance:none;	  

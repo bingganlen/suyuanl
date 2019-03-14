@@ -1,17 +1,25 @@
 package com.megain.junhao.controller;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.megain.junhao.common.Const;
 import com.megain.junhao.common.ResponseCode;
 import com.megain.junhao.common.ServerResponse;
 import com.megain.junhao.pojo.User;
+import com.megain.junhao.service.DerviceService;
 import com.megain.junhao.service.IUserService;
+import com.mysql.jdbc.log.Log;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -19,6 +27,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private IUserService iUserService;
+    @Autowired
+    private DerviceService derviceService;
 
     /**
      * 用户登录   用户相关的提交都是POST
@@ -30,6 +40,8 @@ public class UserController {
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody   /*  使返回值序列化为json   https://www.cnblogs.com/qiankun-site/p/5774325.html    */
     public ServerResponse<User> login(String username, String password, HttpSession session){
+        session.setAttribute("username",username);
+        session.setAttribute("password",password);
         ServerResponse<User> response = iUserService.login(username,password);
         if(response.isSuccess()){// 0   ResponseCode中0代表返回成功
             session.setAttribute(Const.CURRENT_USER,response.getData());
@@ -119,16 +131,29 @@ public class UserController {
         return response;
     }
     //获取个人详细信息
-    @RequestMapping(value = "get_information.do",method = RequestMethod.POST)
-    @ResponseBody
-    public ServerResponse<User> get_information(HttpSession session){
-        User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
+    @RequestMapping(value = "get_information.do",method = RequestMethod.GET)
+    //@ResponseBody  //有这个注解的时候返回结果直接写入HTTP response body中，不会被解析为跳转路径。比如异步请求，希望响应的结果是json数据，那么加上@responsebody后，就会直接返回json数据。
+    public String get_information(HttpSession session, ModelMap map){
+        String currentUser = (String) session.getAttribute("username");
         if(currentUser == null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录,需要强制登录status=10");
+            //return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录,需要强制登录status=10");
+            return "index";
         }
-        return iUserService.getInformation(currentUser.getId());
+        List<User> userList = iUserService.selectUser(currentUser);
+        /*SimpleDateFormat sdf  =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date d = sdf.parse(userList.get(8));*/
+        map.put("userList",userList);
+        return "user_management_show";
     }
 
 
+
+    //查找userid
+    @RequestMapping(value = "findUserId.do",method = RequestMethod.POST)
+    @ResponseBody
+    public int findUserId(String username){
+
+        return iUserService.selectUserId(username);
+    }
 
 }

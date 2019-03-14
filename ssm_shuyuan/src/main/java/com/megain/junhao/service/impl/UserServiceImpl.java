@@ -11,6 +11,7 @@ import com.megain.junhao.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -102,6 +103,14 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createByErrorMessage("找回密码的问题是空的");
     }
 
+    //查找userid
+    @Override
+    public int selectUserId(String username) {
+        return userMapper.selectUserIdnByUsername(username);
+    }
+
+
+
     //使用本地缓存检查问题答案
     public ServerResponse<String> checkAnswer(String username,String question,String answer){
         int resultCount = userMapper.checkAnswer(username,question,answer);  //select count(1) where
@@ -153,11 +162,13 @@ public class UserServiceImpl implements IUserService {
         }
 // select count(1) .. where password=#{password} and id = #{userId}
         user.setPassword(MD5Util.encode(passwordNew));//新密码的之先存到user对象
-        int updateCount = userMapper.updateByPrimaryKeySelective(user);//根据id更新
-        if(updateCount > 0){
-            return ServerResponse.createBySuccessMessage("密码更新成功");
-        }
-        return ServerResponse.createByErrorMessage("密码更新失败");
+        userMapper.updateByPrimaryKeySelective(user);//根据id更新
+        //int updateCount =
+//        if(updateCount > 0){   //显示updateCount负数  却密码更新成功
+//            return ServerResponse.createBySuccessMessage("密码更新成功");
+//        }
+
+        return ServerResponse.createByErrorMessage("密码更新成功");
     }
 
     //更新个人用户信息
@@ -184,15 +195,16 @@ public class UserServiceImpl implements IUserService {
 
 
 
-    public ServerResponse<User> getInformation(Integer userId){
-        User user = userMapper.selectByPrimaryKey(userId);
-        if(user == null){
-            return ServerResponse.createByErrorMessage("找不到当前用户");
-        }
-        user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);  //把密码值变空
-        return ServerResponse.createBySuccess(user);
-
+    public List<User> getInformation(Integer userId){
+        return userMapper.selectByPrimaryKey(userId);
     }
+
+    //根据用户名查找用户信息
+    @Override
+    public List<User> selectUser(String username) {
+        return userMapper.selectUserByUsername(username);
+    }
+
 
 
 
@@ -205,17 +217,17 @@ public class UserServiceImpl implements IUserService {
      * @return
      */
     public ServerResponse checkAdminRole(User user){
-        if(user != null && user.getRoleId().intValue() == Const.Role.ROLE_ADMIN){//user非空，且Role值为2
+        if(user != null && user.getRoleId().intValue() <= Const.Role.ROLE_ADMIN){//user非空，且Role值为2
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByError();
     }
-    public ServerResponse checkSuperAdminRole(User user){
-        if(user != null && user.getRoleId().intValue() == Const.Role.ROLE_SUPERADMIN){//user非空，且Role值为1
-            return ServerResponse.createBySuccess();
-        }
-        return ServerResponse.createByError();
-    }
+//    public ServerResponse checkSuperAdminRole(User user){
+//        if(user != null && user.getRoleId().intValue() == Const.Role.ROLE_SUPERADMIN){//user非空，且Role值为1
+//            return ServerResponse.createBySuccess();
+//        }
+//        return ServerResponse.createByError();
+//    }
 
 
 

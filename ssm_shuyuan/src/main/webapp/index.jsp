@@ -5,11 +5,12 @@
   Time: 14:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" pageEncoding="utf-8" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" pageEncoding="utf-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <html>
 
 <head>
@@ -20,7 +21,7 @@
     <title>登录</title>
     <link rel="stylesheet" href="lib/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="css/login.css" />
-    <link href="css/drag.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/drag.css">
 
 </head>
 
@@ -31,7 +32,7 @@
         <h1>欢迎登录</h1>
     </header>
     <div class="beg-login-main">
-        <form onsubmit="return login()" action="/user/login.do" class="layui-form" method="post" id="formlogin">
+        <form class="layui-form" id="formlogin">
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
@@ -56,26 +57,26 @@
             <div id="drag" class="huadong"></div>
             <!-- <div class="huadong"></div> -->
             <div class="message" >
-						<span class="messageleft">
-							<a href="/user/forget_reset_password.do">忘记密码？</a>
-						</span>
+                <span class="messageleft">
+                    <a href="#">忘记密码？</a>
+                </span>
 
                 <span class="messageright">
-							<a href="/user/register.do">注册新用户</a>
-						</span>
+							<a href="jsp/register.html">注册新用户</a>
+                </span>
             </div>
 
             <div class="login"><!-- login -->
-                <input type="submit" name="" class="btn" value="登 录" lay-submit lay-filter="login" id="submit">
+                <input type="button" name="" class="btn" value="登 录" lay-submit lay-filter="login" id="submit" onclick="login()">
             </div>
         </form>
     </div>
 
 </div>
-<script type="text/javascript" src="lib/layui/layui.js"></script>
+<script type="text/javascript"  src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/jquery.min.js" ></script>
 <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="js/drag.js" type="text/javascript"></script>
+<script src="js/drag.js" type="text/javascript" charset="utf-8"></script>
 <script>
     $(document).ready(function(e) {
         $('#drag').drag();
@@ -86,11 +87,26 @@
 
 <script type="text/javascript">
     function login(){
-        /*checkUserName();
-         checkPassword();*/
-        if (checkUserName()==true && checkPassword()== true && checkyan()==true) {
 
-            return true;
+        if (checkUserName()==true && checkPassword()== true && checkyan()==true) {
+            $.ajax({
+                url: "/user/login.do",
+                type: "post",
+//                dataType: "jsonp",
+//                crossDomain: true,
+                data: $('#formlogin').serialize(),
+                success: function (data) {
+                    if (data.status == 0) {
+                        //这一步时将后台获取的data存储到obj中
+                        sessionStorage.obj = JSON.stringify(data);
+                        //登陆成功后跳转到首页
+                        window.location.href = "jsp/main.jsp";
+                    } else if (data.status == 1) {
+                        alert("账号或密码错误");
+                    }
+                }
+            });
+            //return true;
         }
         return false;
     }

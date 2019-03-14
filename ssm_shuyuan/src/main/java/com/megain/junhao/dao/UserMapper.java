@@ -5,6 +5,8 @@ package com.megain.junhao.dao;
 import com.megain.junhao.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -12,7 +14,12 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    List<User> selectByPrimaryKey(Integer id);
+
+    List<User> selectUserByUsername(String username);
+
+//
+    int selectUserIdnByUsername(String username);
 
     int updateByPrimaryKeySelective(User record);
 

@@ -103,7 +103,7 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </select>
   <select id="checkUsername" resultType="int" parameterType="string"><!-- parameterType输入参数 -->
     select count(1) from user
@@ -399,7 +399,7 @@
         d_id = #{dId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        create_time = now(),
+        create_time = #{createTime,jdbcType=INTEGER},
       </if>
       <if test="updateTime != null">
         update_time = now(),
@@ -451,6 +451,20 @@
   <select id="selectQuestionByUsername" resultType="string" parameterType="string">
     select
     question
+    from user
+    where username = #{username}
+  </select>
+
+  <select id="selectUserIdnByUsername" resultType="int" parameterType="string">
+    select
+    id
+    from user
+    where username = #{username}
+  </select>
+
+  <select id="selectUserByUsername" resultMap="BaseResultMap" parameterType="String">
+    select
+    <include refid="Base_Column_List" />
     from user
     where username = #{username}
   </select>
